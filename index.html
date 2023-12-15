@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.min.css"
+/>
+<html>
+<head>
+  <title>Image Generation</title>
+</head>
+<body>
+  <main class="container">
+  <form id="imageForm">
+    <label for="apiKey">API Key:</label>
+    <input type="text" id="apiKey" name="apiKey"><br><br>
+    
+    <label for="genParam">Gen Parameter:</label>
+    <input type="text" id="genParam" name="genParam"><br><br>
+    
+    <input type="button" id="gene" onclick="generate()" value="Generate Image">
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    
+      function generate(){
+        const cl = document.getElementById("gene")
+      
+      const apiKey = document.getElementById('apiKey').value;
+      const genParam = document.getElementById('genParam').value;
+2
+        cl.setAtribute("aria-busy", "true")
+      window.location.replace("https://inuai.altex.page/?api_key=" + apiKey + "&gen=" + genParam)
+      
+    }
+  </script>
+  </main>
+</body>
+</html>
