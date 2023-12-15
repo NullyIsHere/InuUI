@@ -24,12 +24,11 @@
   <script>
     
       function generate(){
-        const cl = document.getElementById("gene")
-      
+        
       const apiKey = document.getElementById('apiKey').value;
       const genParam = document.getElementById('genParam').value;
 2
-        cl.setAtribute("aria-busy", "true")
+
       window.location.replace("https://inuai.altex.page/?api_key=" + apiKey + "&gen=" + genParam)
       
     }
