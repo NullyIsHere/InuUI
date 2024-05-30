@@ -1,18 +1,25 @@
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css"
-/>
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Generation</title>
- <body>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css">
+  <style>
+    .error {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
 <main class="container">
   <form id="imageForm">
     <h1>InuAi</h1>
     <label for="apiKey"><h3>API Key:</h3></label>
-    <input type="password" id="apiKey" name="apiKey"><br><br>
+    <input type="password" id="apiKey" name="apiKey">
+    <label id="errorLabel" class="error">API Key was invalid!</label>
+    <br><br>
 
     <label for="genParam"><h3>Prompt:</h3> What are we going to create today?</label>
     <input type="text" id="genParam" name="genParam"><br><br>
@@ -21,35 +28,26 @@
     <p>By ItsAsheer. <a href="https://altex.page">altex.page</a></p>
   </form>
 
-
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Función para obtener el valor de un parámetro de consulta por su nombre
-    function getQueryParameter(name) {
+    document.addEventListener('DOMContentLoaded', function() {
+      function getQueryParameter(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
-    }
+      }
 
-    // Verificar si el parámetro de consulta 'invalid' está presente
-    if (getQueryParameter('invalid') !== null) {
-        // Obtener el elemento con el id 'apiKey'
+      if (getQueryParameter('invalid') !== null) {
         const apiKeyElement = document.getElementById('apiKey');
         if (apiKeyElement) {
-            // Agregar el atributo aria-invalid=true
-            apiKeyElement.setAttribute('aria-invalid', 'true');
+          apiKeyElement.setAttribute('aria-invalid', 'true');
+          document.getElementById('errorLabel').style.display = 'inline';
         }
-    }
-});
+      }
+    });
 
-
-
-    function generate(){
-
+    function generate() {
       const apiKey = document.getElementById('apiKey').value;
       const genParam = document.getElementById('genParam').value;
-
-      window.location.replace("https://inuai.altex.page/?api_key=" + apiKey + "&gen=" + genParam)
-
+      window.location.replace("https://inuai.altex.page/?api_key=" + apiKey + "&gen=" + genParam);
     }
   </script>
 </main>
