@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Generation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css">
+  <style>
+    .error {
+      color: red;
+      display: none;
+    }
+    
+    button {
+      position: relative;
+      padding: 12px 35px;
+      background: #FFFFFF;
+      font-size: 17px;
+      font-weight: 500;
+      color: #000000;
+      border: 3px solid #0e3a3a;
+      border-radius: 8px;
+      box-shadow: 0 0 0 #fec1958c;
+      transition: all .3s ease-in-out;
+    }
+
+    .star-1, .star-2, .star-3, .star-4, .star-5, .star-6 {
+      position: absolute;
+      width: 25px;
+      height: auto;
+      filter: drop-shadow(0 0 0 #fffdef);
+      z-index: -5;
+      transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+    }
+
+    button:hover {
+      background: #0e3a3a;
+      color: #FFFFFF;
+      box-shadow: 0 0 25px #0e3a3a;
+      border: 3px solid #FFF;
+    }
+
+    button:hover .star-1, button:hover .star-2, button:hover .star-3,
+    button:hover .star-4, button:hover .star-5, button:hover .star-6 {
+      filter: drop-shadow(0 0 10px #fffdef);
+      z-index: 2;
+    }
+
+    .fil0 {
+      fill: #FFFDEF
+    }
+  </style>
+</head>
+<body>
+<main class="container">
+  <form id="imageForm">
+    <h1>InuAi</h1>
+    <label for="apiKey"><h3>API Key:</h3></label>
+    <input type="password" id="apiKey" name="apiKey">
+    <label id="errorLabel" class="error">API Key was invalid!</label>
+    <br><br>
+
+    <label for="genParam"><h3>Prompt:</h3> What are we going to create today?</label>
+    <input type="text" id="genParam" name="genParam"><br><br>
+
+    <button type="button" id="gene" onclick="generate()">
+      Imagine
+      <div class="star-1">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+      <div class="star-2">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+      <div class="star-3">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+      <div class="star-4">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+      <div class="star-5">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+      <div class="star-6">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+      </div>
+    </button>
+    <p>By ItsAsheer. <a href="https://altex.page">altex.page</a></p>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+      }
+
+      if (getQueryParameter('invalid') !== null) {
+        const apiKeyElement = document.getElementById('apiKey');
+        if (apiKeyElement) {
+          apiKeyElement.setAttribute('aria-invalid', 'true');
+          document.getElementById('errorLabel').style.display = 'inline';
+        }
+      }
+    });
+
+    function generate() {
+      const apiKey = document.getElementById('apiKey').value;
+      const genParam = document.getElementById('genParam').value;
+      window.location.replace("https://inuai.altex.page/?api_key=" + apiKey + "&gen=" + genParam);
+    }
+  </script>
+</main>
+</body>
+</html>
